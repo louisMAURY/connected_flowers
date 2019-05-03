@@ -23,7 +23,7 @@ CREATE TABLE espèceDePlante (
     luminosité INT,
     périodeFloraisonDébut VARCHAR(10),
     périodeFloraisonFin VARCHAR(10),
-    id_Categorie INT CONSTRAINT id_Categorie_FK REFERENCES catégorie,
+    id_Catégorie INT CONSTRAINT id_Categorie_FK REFERENCES catégorie,
     PRIMARY KEY (id_espèceDePlante)
 );
 GO
