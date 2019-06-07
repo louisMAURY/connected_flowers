@@ -1,64 +1,53 @@
-IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = 'CONNECTEDFLOWER')
-DROP DATABASE [CONNECTEDFLOWER]
-GO
-CREATE DATABASE [CONNECTEDFLOWER]
-GO
-use [CONNECTEDFLOWER]
-GO
+CREATE DATABASE IF NOT EXISTS connectedFlower;
+DROP DATABASE connectedFlower;
+CREATE DATABASE connectedFlower;
 
-CREATE TABLE catégorie (
-    id_Catégorie INT IDENTITY(1,1) NOT NULL,
-    catégorie varchar(50),
-    PRIMARY KEY (id_Catégorie)
+USE connectedFlower;
+
+CREATE TABLE categorie (
+    id_categorie INT NOT NULL AUTO_INCREMENT,
+    categoriePlante varchar(50),
+    PRIMARY KEY (id_categorie)
 );
-GO
 
-
-CREATE TABLE espèceDePlante (
-    id_espèceDePlante INT IDENTITY(1,1) NOT NULL,
+CREATE TABLE especeDePlante (
+    id_especeDePlante INT NOT NULL AUTO_INCREMENT ,
     nom VARCHAR(50),
     description TEXT,
-    humidité INT,
+    humidite INT,
     temperature INT,
-    luminosité INT,
-    périodeFloraisonDébut VARCHAR(10),
-    périodeFloraisonFin VARCHAR(10),
-    id_Catégorie INT CONSTRAINT id_Categorie_FK REFERENCES catégorie,
-    PRIMARY KEY (id_espèceDePlante)
+    luminosite INT,
+    periodeFloraisonDebut VARCHAR(10),
+    periodeFloraisonFin VARCHAR(10),
+    id_categorie INT,
+    PRIMARY KEY (id_especeDePlante),
+    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
 );
-GO
 
 CREATE TABLE photos (
-    id_Photos INT IDENTITY(1,1) NOT NULL,
+    id_Photos INT NOT NULL AUTO_INCREMENT NOT NULL,
     photo VARCHAR(50),
-    id_espèceDePlante INT CONSTRAINT id_espèceDePlante_FK REFERENCES espèceDePlante,
-    PRIMARY KEY (id_Photos)
+    id_especeDePlante INT,
+    PRIMARY KEY (id_Photos),
+    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante)
+    
 );
-GO
 
-CREATE TABLE utilisateur (
-    id_utilisateur INT IDENTITY(1,1) NOT NULL,
-    nom_utilisateur VARCHAR(50), 
-    PRIMARY KEY (id_utilisateur)
-);
-GO
-
-CREATE TABLE planteConnectée (
-    id_planteConnectée INT IDENTITY(1,1) NOT NULL,
+CREATE TABLE connectedFlower (
+    id_connectedFlower INT AUTO_INCREMENT NOT NULL,
     nom VARCHAR(50),
-    id_espèceDePlante INT CONSTRAINT id_espèceDePlante_FK2 REFERENCES espèceDePlante,
-    id_utilisateur INT CONSTRAINT id_utilisateur_FK REFERENCES Utilisateur,
-    PRIMARY KEY (id_planteConnectée)
+    id_especeDePlante INT,
+    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
+    PRIMARY KEY (id_connectedFlower)
 );
-GO
 
-CREATE TABLE relevé_plante (
-    id_relevéPlante INT IDENTITY(1,1) NOT NULL,
-    températureAtmoshérique_relevé INT,
-    luminosité_relevé INT,
-    humidité_relevé INT,
+CREATE TABLE relevePlante (
+    id_relevePlante INT AUTO_INCREMENT NOT NULL,
+    temperatureAtmosherique_releve INT,
+    luminositeReleve INT,
+    humiditeReleve INT,
     dateHeure DATE,
-    id_Plante INT CONSTRAINT id_Plante_FK REFERENCES EspèceDePlante,
-    PRIMARY KEY (id_relevéPlante)
+    id_especeDePlante INT,
+    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
+    PRIMARY KEY (id_relevePlante)
 );
-GO
