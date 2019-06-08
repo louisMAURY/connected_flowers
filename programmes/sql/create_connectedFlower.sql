@@ -43,10 +43,10 @@ CREATE TABLE connectedFlower (
 
 CREATE TABLE relevePlante (
     id_relevePlante INT AUTO_INCREMENT NOT NULL,
-    temperatureAtmosherique_releve INT,
+    temperatureAtmospherique_releve INT,
     luminositeReleve INT,
     humiditeReleve INT,
-    dateHeure DATE,
+    dateHeure VARCHAR(20),
     id_especeDePlante INT,
     FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
     PRIMARY KEY (id_relevePlante)

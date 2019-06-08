@@ -19,7 +19,7 @@ INSERT INTO categorie(categoriePlante) VALUES
 ('Paeoniacées');
 
 
-INSERT INTO especeDeplante(nom, description, humidite, temperature, luminosite, periodeFloraisonDebut, periodeFloraisonFin, id_categorie)
+INSERT INTO especeDePlante(nom, description, humidite, temperature, luminosite, periodeFloraisonDebut, periodeFloraisonFin, id_categorie)
 VALUES
 ('Rose', 'Rose ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo.', 10,  -5, 96, 'Août', 'Septembre', 1),
 ('Tulipe', 'Tulipe ob rem cave Catoni anteponas ne istum quidem ipsum, quem Apollo.', 13,  -4, 93, 'Mai', 'Juin', 2),
