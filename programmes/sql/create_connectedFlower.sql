@@ -1,4 +1,3 @@
-CREATE DATABASE IF NOT EXISTS connectedFlower;
 DROP DATABASE connectedFlower;
 CREATE DATABASE connectedFlower;
 
