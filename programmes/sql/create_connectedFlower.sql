@@ -4,50 +4,50 @@ CREATE DATABASE connectedFlower;
 
 USE connectedFlower;
 
-CREATE TABLE categorie (
-    id_categorie INT NOT NULL AUTO_INCREMENT,
-    categoriePlante varchar(50),
-    PRIMARY KEY (id_categorie)
+CREATE TABLE Category (
+    id INT NOT NULL AUTO_INCREMENT,
+    categoryPlante varchar(50),
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE especeDePlante (
-    id_especeDePlante INT NOT NULL AUTO_INCREMENT ,
-    nom VARCHAR(50),
+CREATE TABLE Flowerspecies (
+    id INT NOT NULL AUTO_INCREMENT ,
+    name VARCHAR(50),
     description TEXT,
-    humidite INT,
+    humidity INT,
     temperature INT,
-    luminosite INT,
-    periodeFloraisonDebut VARCHAR(10),
-    periodeFloraisonFin VARCHAR(10),
-    id_categorie INT,
-    PRIMARY KEY (id_especeDePlante),
-    FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
+    luminosity INT,
+    blossomingPeriodStart VARCHAR(10),
+    blossomingPeriodEnd VARCHAR(10),
+    idCategory INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (idCategory) REFERENCES category(id)
 );
 
-CREATE TABLE photos (
-    id_Photos INT NOT NULL AUTO_INCREMENT NOT NULL,
-    photo VARCHAR(50),
-    id_especeDePlante INT,
-    PRIMARY KEY (id_Photos),
-    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante)
+CREATE TABLE Pictures (
+    id INT NOT NULL AUTO_INCREMENT NOT NULL,
+    picture VARCHAR(50),
+    idFlowerSpecies INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (idFlowerSpecies) REFERENCES flowerSpecies(id)
     
 );
 
-CREATE TABLE connectedFlower (
-    id_connectedFlower INT AUTO_INCREMENT NOT NULL,
-    nom VARCHAR(50),
-    id_especeDePlante INT,
-    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
-    PRIMARY KEY (id_connectedFlower)
+CREATE TABLE ConnectedFlower (
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(50),
+    idflowerSpecies INT,
+    FOREIGN KEY (idFlowerSpecies) REFERENCES flowerSpecies(id),
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE relevePlante (
-    id_relevePlante INT AUTO_INCREMENT NOT NULL,
-    temperatureAtmosherique_releve INT,
-    luminositeReleve INT,
-    humiditeReleve INT,
-    dateHeure DATE,
-    id_especeDePlante INT,
-    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
-    PRIMARY KEY (id_relevePlante)
+CREATE TABLE FlowerStatement (
+    id INT AUTO_INCREMENT NOT NULL,
+    atmosphericTemperature INT,
+    luminosity INT,
+    humidity INT,
+    dateHour DATE,
+    idConnectedFlower INT,
+    FOREIGN KEY (idCOnnectedFlower) REFERENCES connectedFlower(id),
+    PRIMARY KEY (id)
 );
