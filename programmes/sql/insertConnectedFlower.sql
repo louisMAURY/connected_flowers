@@ -1,4 +1,4 @@
-INSERT INTO category(categoryFlower) VALUES
+INSERT INTO Category(categoryFlower) VALUES
 ('Rosacées'),
 ('Liliacées'),
 ('Monocotylédones'),

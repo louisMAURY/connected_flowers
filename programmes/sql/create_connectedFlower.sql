@@ -9,7 +9,7 @@ CREATE TABLE Category (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE Flowerspecies (
+CREATE TABLE FlowerSpecies (
     id INT NOT NULL AUTO_INCREMENT ,
     name VARCHAR(50),
     description TEXT,
@@ -20,33 +20,33 @@ CREATE TABLE Flowerspecies (
     blossomingPeriodEnd VARCHAR(10),
     idCategory INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (idCategory) REFERENCES category(id)
+    FOREIGN KEY (idCategory) REFERENCES Category(id)
 );
 
 CREATE TABLE Pictures (
-    id INT NOT NULL AUTO_INCREMENT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     picture VARCHAR(50),
     idFlowerSpecies INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (idFlowerSpecies) REFERENCES flowerSpecies(id)
+    FOREIGN KEY (idFlowerSpecies) REFERENCES FlowerSpecies(id)
     
 );
 
 CREATE TABLE ConnectedFlower (
-    id INT AUTO_INCREMENT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50),
-    idflowerSpecies INT,
-    FOREIGN KEY (idFlowerSpecies) REFERENCES flowerSpecies(id),
+    idFlowerSpecies INT,
+    FOREIGN KEY (idFlowerSpecies) REFERENCES FlowerSpecies(id),
     PRIMARY KEY (id)
 );
 
 CREATE TABLE FlowerSummary (
-    id INT AUTO_INCREMENT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     atmosphericTemperature INT,
     luminosity INT,
     humidity INT,
-    dateHour DATE,
+    dateHour VARCHAR(20),
     idConnectedFlower INT,
-    FOREIGN KEY (idConnectedFlower) REFERENCES connectedFlower(id),
+    FOREIGN KEY (idConnectedFlower) REFERENCES ConnectedFlower(id),
     PRIMARY KEY (id)
 );

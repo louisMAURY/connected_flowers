@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # ============== Les Import ====================
@@ -21,7 +21,7 @@ import datetime
 
 tempsCapture = 4
 
-# ~~~~~~~~Lumiere~~~~~~~~
+# ~~~~~~~~~Lumiere~~~~~~~~~
 def cap_lumiere(port_number):
     ldr = LightSensor(port_number) # lit sur le port indique en parametre  de la fonction.
 
@@ -29,7 +29,7 @@ def cap_lumiere(port_number):
 			                   # 0 etant la valeur ou il n'y a pas de lumiere.
     return round(calcul)
 
-# ~~~~~~~~temperature~~~~~~~~
+# ~~~~~~~~~temperature~~~~~~~~
 def cap_temperature():
     bus_alim = 1 # Donne le bus d'alimentation
     bus = smbus.SMBus(bus_alim)
@@ -49,21 +49,26 @@ def cap_temperature():
         temperature = (((msb * 256) + lsb) >> 4)  * 0.0625
     return round(temperature)
 
-# ~~~~~~~~Humidite~~~~~~~
+# ~~~~~~~~~Humidite~~~~~~~~~
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(20, GPIO.IN)
 def cap_humidite():
     return GPIO.input(20)
 
-# ~~~~~~~~~ Base de donnee ~~~~~~~~~~
+# ~~~~~~~~~Base de donnee~~~~~~~~~
+print("Écrivez le nom de votre plante connectée: ")
+nameConnectedFlower = input()
+
 def insertSQL():
     la_date = datetime.datetime.today().strftime('%d-%m-%Y %H:%M:%S')
-
     mariadb_connection = mariadb.connect(user='qlp', password='qlp', database='connectedFlower')
     cursor = mariadb_connection.cursor()
-    cursor.execute("INSERT INTO relevePlante (temperatureAtmospherique_releve, luminositeReleve, humiditeReleve, dateHeure ) VALUES ({}, {}, {}, '{}')".format(cap_temperature(), cap_lumiere(4), cap_humidite(), la_date))
+    cursor.execute("SELECT * FROM ConnectedFlower WHERE lower(name) = lower('{}')".format(nameConnectedFlower))
+    for (id, d, f) in cursor:
+        idConnectedFlower = id
+    cursor.execute("INSERT INTO FlowerSummary (atmosphericTemperature, luminosity, humidity, dateHour, idConnectedFlower ) VALUES ({}, {}, {}, '{}', {})".format(cap_temperature(), cap_lumiere(4), cap_humidite(), la_date, idConnectedFlower))
     mariadb_connection.commit()
-
+# ~~~~~~~~~fonction Main~~~~~~~~~
 def main():
     print("Je relève les valeurs !")
     while True:
