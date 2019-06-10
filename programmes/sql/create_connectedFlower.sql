@@ -41,13 +41,13 @@ CREATE TABLE ConnectedFlower (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE FlowerStatement (
+CREATE TABLE FlowerSummary (
     id INT AUTO_INCREMENT NOT NULL,
     atmosphericTemperature INT,
     luminosity INT,
     humidity INT,
     dateHour DATE,
     idConnectedFlower INT,
-    FOREIGN KEY (idCOnnectedFlower) REFERENCES connectedFlower(id),
+    FOREIGN KEY (idConnectedFlower) REFERENCES connectedFlower(id),
     PRIMARY KEY (id)
 );
