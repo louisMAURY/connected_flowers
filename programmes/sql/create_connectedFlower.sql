@@ -41,6 +41,7 @@ CREATE TABLE ConnectedFlower (
     PRIMARY KEY (id)
 );
 
+<<<<<<< HEAD
 CREATE TABLE FlowerStatement (
     id INT AUTO_INCREMENT NOT NULL,
     atmosphericTemperature INT,
@@ -51,3 +52,15 @@ CREATE TABLE FlowerStatement (
     FOREIGN KEY (idCOnnectedFlower) REFERENCES connectedFlower(id),
     PRIMARY KEY (id)
 );
+=======
+CREATE TABLE relevePlante (
+    id_relevePlante INT AUTO_INCREMENT NOT NULL,
+    temperatureAtmospherique_releve INT,
+    luminositeReleve INT,
+    humiditeReleve INT,
+    dateHeure VARCHAR(20),
+    id_especeDePlante INT,
+    FOREIGN KEY (id_especeDePlante) REFERENCES especeDePlante(id_especeDePlante),
+    PRIMARY KEY (id_relevePlante)
+);
+>>>>>>> master
