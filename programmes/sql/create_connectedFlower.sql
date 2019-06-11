@@ -23,15 +23,6 @@ CREATE TABLE FlowerSpecies (
     FOREIGN KEY (idCategory) REFERENCES Category(id)
 );
 
-CREATE TABLE Pictures (
-    id INT NOT NULL AUTO_INCREMENT,
-    picture VARCHAR(50),
-    idFlowerSpecies INT,
-    PRIMARY KEY (id),
-    FOREIGN KEY (idFlowerSpecies) REFERENCES FlowerSpecies(id)
-    
-);
-
 CREATE TABLE ConnectedFlower (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50),
